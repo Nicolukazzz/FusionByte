@@ -6,6 +6,7 @@ public class Character_Controller : MonoBehaviour
 {
     public float Speed = 10f;
     public float JumpForce = 12f;
+    public float FuerzaRebote = 10f;
     public float MaxHoldTime = 0.5f; // Tiempo máximo que se puede mantener presionada la tecla de salto
     public LayerMask capaFloor;
     public int MaxJumps = 2;
@@ -20,10 +21,14 @@ public class Character_Controller : MonoBehaviour
     private bool isJumping;
     private float jumpTimeCounter;
 
+    private bool RecibiendoDano;
+    public Animator animator;
+
     public void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -33,6 +38,21 @@ public class Character_Controller : MonoBehaviour
         ApplyGravityModifiers();
     }
 
+    public void RecibeDano(Vector2 direccion, int cantDano)
+    {
+        if (!RecibiendoDano)
+        {
+            RecibiendoDano = true;
+            Vector2 rebote = new Vector2(transform.position.x - direccion.x, 1).normalized;
+            rigidbody.AddForce(rebote*FuerzaRebote, ForceMode2D.Impulse);
+        }
+
+    } 
+
+    public void DesactivarDano()
+    {
+        RecibiendoDano = false;
+    }
     bool InFloor()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y), 0f, Vector2.down, 0.2f, capaFloor);
@@ -45,6 +65,12 @@ public class Character_Controller : MonoBehaviour
         if (InFloor())
         {
             RestJumps = MaxJumps;
+            animator.SetBool("InFloor",true);
+          
+        }
+        if (!InFloor())
+        {
+            animator.SetBool("InFloor", false);
         }
 
         // Inicia el salto
@@ -95,8 +121,12 @@ public class Character_Controller : MonoBehaviour
     {
         // Movimiento del personaje
         float inputMovement = Input.GetAxis("Horizontal");
+        animator.SetFloat("Horizontal",Mathf.Abs(inputMovement));
+        animator.SetFloat("VelocidadY", rigidbody.velocity.y);
         rigidbody.velocity = new Vector2(inputMovement * Speed, rigidbody.velocity.y);
         Orientation(inputMovement);
+        animator.SetBool("RecibeDano",RecibiendoDano);
+
     }
 
     void Orientation(float inputMovement)
@@ -108,4 +138,6 @@ public class Character_Controller : MonoBehaviour
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
+
+   
 }

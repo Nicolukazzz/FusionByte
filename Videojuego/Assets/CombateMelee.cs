@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using UnityEngine;
+using UnityEngine.InputSystem.iOS;
+
+public class CombateMelee : MonoBehaviour
+{
+    [SerializeField] private Transform AttackController;
+    [SerializeField] private float radio;
+    [SerializeField] private float Dano;
+    public float tiempoEntreAtaques;
+    public float tiempoSiguienteAtaque;
+    private Animator animator;
+
+    public void Start()
+    {
+
+        animator = GetComponent<Animator>();
+    }
+
+    public void Update()
+    {
+        if (tiempoSiguienteAtaque>0)
+        {
+            tiempoSiguienteAtaque -= Time.deltaTime;
+        }
+        if (Input.GetKeyDown(KeyCode.P)&&tiempoSiguienteAtaque<=0)
+        {
+            
+            Golpe();
+            tiempoSiguienteAtaque = tiempoEntreAtaques;
+        }
+    }
+    private void Golpe()
+    {
+        animator.SetTrigger("Golpe");
+        Collider2D[] Objetos = Physics2D.OverlapCircleAll(AttackController.position, radio);
+
+        foreach (Collider2D collider2D in Objetos)
+        {
+            Debug.Log("Objeto detectado: " + collider2D.name);
+            if (collider2D.CompareTag("Enemigo"))
+            {
+                Debug.Log("Enemigo encontrado: " + collider2D.name);
+                collider2D.transform.GetComponent<Enemycontroller>().TomarDano(Dano);
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(AttackController.position, radio);
+    }
+}
+
+
