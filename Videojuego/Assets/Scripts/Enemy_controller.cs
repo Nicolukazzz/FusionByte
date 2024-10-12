@@ -6,12 +6,16 @@ public class Enemycontroller : MonoBehaviour
 {
     [SerializeField] private float vida = 100;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private Transform transform;
     private bool isDead;
     private bool recibiendoDano;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
+        transform = this.GetComponent<Transform>();
     }
 
     public void TomarDano(float Dano)
@@ -32,8 +36,7 @@ public class Enemycontroller : MonoBehaviour
 
         recibiendoDano = false;
 
-        if (vida <= 0)
-
+        if (vida <= 0 || isDead)
         {
             Muerte();
         }
@@ -42,7 +45,10 @@ public class Enemycontroller : MonoBehaviour
     private void Muerte()
     {
         isDead = true;
-        animator.SetTrigger("Muerte");
+        //animator.SetTrigger("Muerte");
+        print("Is Dead");
+        spriteRenderer.color = Color.red;
+        transform.localRotation = Quaternion.Euler(0, 0, 90);
     }
 
     public bool getIsDead()

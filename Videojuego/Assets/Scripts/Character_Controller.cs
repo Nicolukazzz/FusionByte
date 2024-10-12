@@ -15,7 +15,7 @@ public class Character_Controller : MonoBehaviour
 
     private bool LookRight = true;
     private int RestJumps;
-    private new Rigidbody2D rigidbody;
+    private Rigidbody2D rigidbody;
     private BoxCollider2D boxCollider;
 
     private bool isJumping;
