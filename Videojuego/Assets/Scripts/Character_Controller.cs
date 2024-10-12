@@ -22,7 +22,7 @@ public class Character_Controller : MonoBehaviour
     private float jumpTimeCounter;
 
     private bool RecibiendoDano;
-    public Animator animator;
+    private Animator animator;
 
     public void Start()
     {
@@ -139,5 +139,4 @@ public class Character_Controller : MonoBehaviour
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
-   
 }
