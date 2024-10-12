@@ -33,6 +33,7 @@ public class Enemycontroller : MonoBehaviour
         recibiendoDano = false;
 
         if (vida <= 0)
+
         {
             Muerte();
         }
@@ -49,3 +50,4 @@ public class Enemycontroller : MonoBehaviour
         return isDead;
     }
 }
+
