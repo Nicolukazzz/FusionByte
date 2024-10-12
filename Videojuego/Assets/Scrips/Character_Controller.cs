@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Character_Controller : MonoBehaviour
 {
+    [SerializeField] private float health = 100;
     public float Speed = 10f;
     public float JumpForce = 12f;
     public float MaxHoldTime = 0.5f; // Tiempo máximo que se puede mantener presionada la tecla de salto
@@ -33,6 +34,25 @@ public class Character_Controller : MonoBehaviour
         ApplyGravityModifiers();
     }
 
+<<<<<<< Updated upstream
+=======
+    public void RecibeDano(Vector2 direccion, int cantDano)
+    {
+        if (!RecibiendoDano)
+        {
+            RecibiendoDano = true;
+            Vector2 rebote = new Vector2(transform.position.x - direccion.x, 1).normalized;
+            rigidbody.AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
+        }
+
+    } 
+
+    public void DesactivarDano()
+    {
+        RecibiendoDano = false;
+    }
+
+>>>>>>> Stashed changes
     bool InFloor()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y), 0f, Vector2.down, 0.2f, capaFloor);
