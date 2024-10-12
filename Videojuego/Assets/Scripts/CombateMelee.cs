@@ -12,6 +12,7 @@ public class CombateMelee : MonoBehaviour
     public float tiempoEntreAtaques;
     public float tiempoSiguienteAtaque;
     private Animator animator;
+    private Enemycontroller enemycontroller;
 
     public void Start()
     {
@@ -39,11 +40,14 @@ public class CombateMelee : MonoBehaviour
 
         foreach (Collider2D collider2D in Objetos)
         {
-            Debug.Log("Objeto detectado: " + collider2D.name);
-            if (collider2D.CompareTag("Enemigo"))
+            if (collider2D.CompareTag("Enemy"))
             {
+                enemycontroller = collider2D.transform.GetComponent<Enemycontroller>();
                 Debug.Log("Enemigo encontrado: " + collider2D.name);
-                collider2D.transform.GetComponent<Enemycontroller>().TomarDano(Dano);
+                if (enemycontroller.getIsDead() == false)
+                {
+                    enemycontroller.TomarDano(Dano);
+                }
             }
         }
     }

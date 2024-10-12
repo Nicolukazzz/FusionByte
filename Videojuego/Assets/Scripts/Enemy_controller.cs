@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Enemycontroller : MonoBehaviour
 {
-    [SerializeField] private float vida=100;
+    [SerializeField] private float vida = 100;
     private Animator animator;
+    private bool isDead;
+    private bool recibiendoDano;
 
     private void Start()
     {
@@ -14,7 +16,15 @@ public class Enemycontroller : MonoBehaviour
 
     public void TomarDano(float Dano)
     {
-        vida=vida-Dano;
+        
+        do
+        {
+            vida -= Dano;
+            recibiendoDano = true;
+        }while(vida > 0 && !recibiendoDano && !isDead);
+
+        recibiendoDano = false;
+
         if(vida<=0)
         {
             Muerte();
@@ -23,7 +33,13 @@ public class Enemycontroller : MonoBehaviour
 
     private void Muerte()
     {
+        isDead = true;
         animator.SetTrigger("Muerte");
+    }
+
+    public bool getIsDead()
+    {
+        return isDead;
     }
 }
 
