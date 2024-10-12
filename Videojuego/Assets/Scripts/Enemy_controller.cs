@@ -11,21 +11,29 @@ public class Enemycontroller : MonoBehaviour
 
     private void Start()
     {
-        animator=GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     public void TomarDano(float Dano)
     {
-        
+
         do
         {
-            vida -= Dano;
+            if (vida < Dano)
+            {
+                vida = 0;
+            }
+            else
+            {
+                vida -= Dano;
+            }
             recibiendoDano = true;
-        }while(vida > 0 && !recibiendoDano && !isDead);
+        } while (vida > 0 && !recibiendoDano && !isDead);
 
         recibiendoDano = false;
 
-        if(vida<=0)
+        if (vida <= 0)
+
         {
             Muerte();
         }

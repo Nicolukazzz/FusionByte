@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -65,8 +65,8 @@ public class Character_Controller : MonoBehaviour
         if (InFloor())
         {
             RestJumps = MaxJumps;
-            animator.SetBool("InFloor", true);
-
+            animator.SetBool("InFloor",true);
+          
         }
         if (!InFloor())
         {
@@ -83,6 +83,7 @@ public class Character_Controller : MonoBehaviour
         }
 
         // Mant�n el salto mientras se mantenga presionada la tecla
+
         if (Input.GetKey(KeyCode.Space) && isJumping)
         {
             if (jumpTimeCounter > 0)
@@ -121,11 +122,11 @@ public class Character_Controller : MonoBehaviour
     {
         // Movimiento del personaje
         float inputMovement = Input.GetAxis("Horizontal");
-        animator.SetFloat("Horizontal", Mathf.Abs(inputMovement));
+        animator.SetFloat("Horizontal",Mathf.Abs(inputMovement));
         animator.SetFloat("VelocidadY", rigidbody.velocity.y);
         rigidbody.velocity = new Vector2(inputMovement * Speed, rigidbody.velocity.y);
         Orientation(inputMovement);
-        animator.SetBool("RecibeDano", RecibiendoDano);
+        animator.SetBool("RecibeDano",RecibiendoDano);
 
     }
 
@@ -138,6 +139,5 @@ public class Character_Controller : MonoBehaviour
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
-
-
+   
 }
