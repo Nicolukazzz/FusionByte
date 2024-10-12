@@ -22,11 +22,11 @@ public class CombateMelee : MonoBehaviour
 
     public void Update()
     {
-        if (tiempoSiguienteAtaque > 0)
+        if (tiempoSiguienteAtaque>0)
         {
             tiempoSiguienteAtaque -= Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.P) && tiempoSiguienteAtaque <= 0)
+        if (Input.GetKeyDown(KeyCode.P)&&tiempoSiguienteAtaque<=0)
         {
             
             Golpe();
@@ -40,11 +40,10 @@ public class CombateMelee : MonoBehaviour
 
         foreach (Collider2D collider2D in Objetos)
         {
-            Debug.Log("Objeto detectado: " + collider2D.name);
             if (collider2D.CompareTag("Enemy"))
             {
-                Debug.Log("Enemigo encontrado: " + collider2D.name);
                 enemycontroller = collider2D.transform.GetComponent<Enemycontroller>();
+                Debug.Log("Enemigo encontrado: " + collider2D.name);
                 if (enemycontroller.getIsDead() == false)
                 {
                     enemycontroller.TomarDano(Dano);
