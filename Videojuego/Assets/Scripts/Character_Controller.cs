@@ -7,11 +7,11 @@ public class Character_Controller : MonoBehaviour
     public float Speed = 10f;
     public float JumpForce = 12f;
     public float FuerzaRebote = 10f;
-    public float MaxHoldTime = 0.5f; // Tiempo máximo que se puede mantener presionada la tecla de salto
+    public float MaxHoldTime = 0.5f; // Tiempo mï¿½ximo que se puede mantener presionada la tecla de salto
     public LayerMask capaFloor;
     public int MaxJumps = 2;
-    public float fallMultiplier = 2.5f; // Factor que incrementa la velocidad de caída
-    public float lowJumpMultiplier = 2f; // Factor que desacelera la caída cuando se suelta la tecla
+    public float fallMultiplier = 2.5f; // Factor que incrementa la velocidad de caï¿½da
+    public float lowJumpMultiplier = 2f; // Factor que desacelera la caï¿½da cuando se suelta la tecla
 
     private bool LookRight = true;
     private int RestJumps;
@@ -44,10 +44,10 @@ public class Character_Controller : MonoBehaviour
         {
             RecibiendoDano = true;
             Vector2 rebote = new Vector2(transform.position.x - direccion.x, 1).normalized;
-            rigidbody.AddForce(rebote*FuerzaRebote, ForceMode2D.Impulse);
+            rigidbody.AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
         }
 
-    } 
+    }
 
     public void DesactivarDano()
     {
@@ -61,7 +61,7 @@ public class Character_Controller : MonoBehaviour
 
     void Jump()
     {
-        // Si el personaje está en el suelo, restablece el número de saltos disponibles
+        // Si el personaje estï¿½ en el suelo, restablece el nï¿½mero de saltos disponibles
         if (InFloor())
         {
             RestJumps = MaxJumps;
@@ -82,7 +82,8 @@ public class Character_Controller : MonoBehaviour
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, JumpForce);
         }
 
-        // Mantén el salto mientras se mantenga presionada la tecla
+        // Mantï¿½n el salto mientras se mantenga presionada la tecla
+
         if (Input.GetKey(KeyCode.Space) && isJumping)
         {
             if (jumpTimeCounter > 0)
@@ -107,12 +108,12 @@ public class Character_Controller : MonoBehaviour
     {
         if (rigidbody.velocity.y < 0)
         {
-            // Aplica un multiplicador para acelerar la caída
+            // Aplica un multiplicador para acelerar la caï¿½da
             rigidbody.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
         else if (rigidbody.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
         {
-            // Aplica un multiplicador para suavizar la caída si se suelta la tecla de salto
+            // Aplica un multiplicador para suavizar la caï¿½da si se suelta la tecla de salto
             rigidbody.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
@@ -131,13 +132,12 @@ public class Character_Controller : MonoBehaviour
 
     void Orientation(float inputMovement)
     {
-        // Orientación del personaje
+        // Orientaciï¿½n del personaje
         if ((LookRight && inputMovement < 0) || (!LookRight && inputMovement > 0))
         {
             LookRight = !LookRight;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
-
    
 }
