@@ -1,17 +1,17 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Character_Controller : MonoBehaviour
 {
-    [SerializeField] private float health = 100;
     public float Speed = 10f;
     public float JumpForce = 12f;
-    public float MaxHoldTime = 0.5f; // Tiempo máximo que se puede mantener presionada la tecla de salto
+    public float FuerzaRebote = 10f;
+    public float MaxHoldTime = 0.5f; // Tiempo mï¿½ximo que se puede mantener presionada la tecla de salto
     public LayerMask capaFloor;
     public int MaxJumps = 2;
-    public float fallMultiplier = 2.5f; // Factor que incrementa la velocidad de caída
-    public float lowJumpMultiplier = 2f; // Factor que desacelera la caída cuando se suelta la tecla
+    public float fallMultiplier = 2.5f; // Factor que incrementa la velocidad de caï¿½da
+    public float lowJumpMultiplier = 2f; // Factor que desacelera la caï¿½da cuando se suelta la tecla
 
     private bool LookRight = true;
     private int RestJumps;
@@ -21,10 +21,14 @@ public class Character_Controller : MonoBehaviour
     private bool isJumping;
     private float jumpTimeCounter;
 
+    private bool RecibiendoDano;
+    public Animator animator;
+
     public void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -34,8 +38,6 @@ public class Character_Controller : MonoBehaviour
         ApplyGravityModifiers();
     }
 
-<<<<<<< Updated upstream
-=======
     public void RecibeDano(Vector2 direccion, int cantDano)
     {
         if (!RecibiendoDano)
@@ -45,14 +47,12 @@ public class Character_Controller : MonoBehaviour
             rigidbody.AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
         }
 
-    } 
+    }
 
     public void DesactivarDano()
     {
         RecibiendoDano = false;
     }
-
->>>>>>> Stashed changes
     bool InFloor()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y), 0f, Vector2.down, 0.2f, capaFloor);
@@ -61,10 +61,16 @@ public class Character_Controller : MonoBehaviour
 
     void Jump()
     {
-        // Si el personaje está en el suelo, restablece el número de saltos disponibles
+        // Si el personaje estï¿½ en el suelo, restablece el nï¿½mero de saltos disponibles
         if (InFloor())
         {
             RestJumps = MaxJumps;
+            animator.SetBool("InFloor", true);
+
+        }
+        if (!InFloor())
+        {
+            animator.SetBool("InFloor", false);
         }
 
         // Inicia el salto
@@ -76,7 +82,7 @@ public class Character_Controller : MonoBehaviour
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, JumpForce);
         }
 
-        // Mantén el salto mientras se mantenga presionada la tecla
+        // Mantï¿½n el salto mientras se mantenga presionada la tecla
         if (Input.GetKey(KeyCode.Space) && isJumping)
         {
             if (jumpTimeCounter > 0)
@@ -101,12 +107,12 @@ public class Character_Controller : MonoBehaviour
     {
         if (rigidbody.velocity.y < 0)
         {
-            // Aplica un multiplicador para acelerar la caída
+            // Aplica un multiplicador para acelerar la caï¿½da
             rigidbody.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
         else if (rigidbody.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
         {
-            // Aplica un multiplicador para suavizar la caída si se suelta la tecla de salto
+            // Aplica un multiplicador para suavizar la caï¿½da si se suelta la tecla de salto
             rigidbody.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
@@ -115,17 +121,23 @@ public class Character_Controller : MonoBehaviour
     {
         // Movimiento del personaje
         float inputMovement = Input.GetAxis("Horizontal");
+        animator.SetFloat("Horizontal", Mathf.Abs(inputMovement));
+        animator.SetFloat("VelocidadY", rigidbody.velocity.y);
         rigidbody.velocity = new Vector2(inputMovement * Speed, rigidbody.velocity.y);
         Orientation(inputMovement);
+        animator.SetBool("RecibeDano", RecibiendoDano);
+
     }
 
     void Orientation(float inputMovement)
     {
-        // Orientación del personaje
+        // Orientaciï¿½n del personaje
         if ((LookRight && inputMovement < 0) || (!LookRight && inputMovement > 0))
         {
             LookRight = !LookRight;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
+
+
 }
