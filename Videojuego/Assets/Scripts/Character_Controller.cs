@@ -6,7 +6,6 @@ public class Character_Controller : MonoBehaviour
 {
     public float Speed = 10f;
     public float JumpForce = 12f;
-    public float FuerzaRebote = 10f;
     public float MaxHoldTime = 0.5f; // Tiempo m�ximo que se puede mantener presionada la tecla de salto
     public LayerMask capaFloor;
     public int MaxJumps = 2;
@@ -17,11 +16,13 @@ public class Character_Controller : MonoBehaviour
     private int RestJumps;
     private Rigidbody2D rigidbody;
     private BoxCollider2D boxCollider;
+    private Player_Health playerHealth;
 
     private bool isJumping;
     private float jumpTimeCounter;
+    private bool recibiendoDano;
 
-    private bool RecibiendoDano;
+
     private Animator animator;
 
     public void Start()
@@ -29,6 +30,7 @@ public class Character_Controller : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        playerHealth = GetComponent<Player_Health>();
     }
 
     void Update()
@@ -38,21 +40,6 @@ public class Character_Controller : MonoBehaviour
         ApplyGravityModifiers();
     }
 
-    public void RecibeDano(Vector2 direccion, int cantDano)
-    {
-        if (!RecibiendoDano)
-        {
-            RecibiendoDano = true;
-            Vector2 rebote = new Vector2(transform.position.x - direccion.x, 1).normalized;
-            rigidbody.AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
-        }
-
-    }
-
-    public void DesactivarDano()
-    {
-        RecibiendoDano = false;
-    }
     bool InFloor()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y), 0f, Vector2.down, 0.2f, capaFloor);
@@ -74,7 +61,7 @@ public class Character_Controller : MonoBehaviour
         }
 
         // Inicia el salto
-        if (Input.GetKeyDown(KeyCode.Space) && RestJumps > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && RestJumps > 0 && !recibiendoDano)
         {
             isJumping = true;
             jumpTimeCounter = MaxHoldTime;
@@ -126,7 +113,7 @@ public class Character_Controller : MonoBehaviour
         animator.SetFloat("VelocidadY", rigidbody.velocity.y);
         rigidbody.velocity = new Vector2(inputMovement * Speed, rigidbody.velocity.y);
         Orientation(inputMovement);
-        animator.SetBool("RecibeDano",RecibiendoDano);
+        //animator.SetBool("RecibeDano", playerHealth.getRecibiendoDano());
 
     }
 
