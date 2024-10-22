@@ -30,6 +30,11 @@ public class Scene_Manager : MonoBehaviour
         SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 
+    public void selectLevel(int level)
+    {
+        SceneManager.LoadScene(level, LoadSceneMode.Single);
+    }
+
     public void backButton()
     {
         SceneManager.LoadScene(1, LoadSceneMode.Single);
