@@ -7,7 +7,7 @@ TagManager:
   - Enemy
   - Collectable
   - Trap
-  - PuntoDeControl
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

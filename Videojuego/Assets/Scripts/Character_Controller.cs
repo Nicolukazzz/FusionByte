@@ -8,12 +8,12 @@ public class Character_Controller : MonoBehaviour
     public float JumpForce = 12f;
     public float MaxHoldTime = 0.5f; // Tiempo m�ximo que se puede mantener presionada la tecla de salto
     public LayerMask capaFloor;
-    public int MaxJumps = 2;
+    public int MaxJumps = 1;
     public float fallMultiplier = 2.5f; // Factor que incrementa la velocidad de ca�da
     public float lowJumpMultiplier = 2f; // Factor que desacelera la ca�da cuando se suelta la tecla
 
     private bool LookRight = true;
-    private int RestJumps;
+    private int RestJumps=0;
     private Rigidbody2D rigidbody;
     private BoxCollider2D boxCollider;
     private Player_Health playerHealth;
@@ -21,6 +21,8 @@ public class Character_Controller : MonoBehaviour
     private bool isJumping;
     private float jumpTimeCounter;
     private bool recibiendoDano;
+
+    private Vector3 checkpointPosition;
 
 
     private Animator animator;
@@ -31,6 +33,7 @@ public class Character_Controller : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         playerHealth = GetComponent<Player_Health>();
+        checkpointPosition = transform.position;
     }
 
     void Update()
@@ -38,6 +41,11 @@ public class Character_Controller : MonoBehaviour
         Movement();
         Jump();
         ApplyGravityModifiers();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Respawn();
+        }
     }
 
     bool InFloor()
@@ -48,7 +56,7 @@ public class Character_Controller : MonoBehaviour
 
     void Jump()
     {
-        // Si el personaje est� en el suelo, restablece el n�mero de saltos disponibles
+        // Si el personaje esta en el suelo, restablece el n�mero de saltos disponibles
         if (InFloor())
         {
             RestJumps = MaxJumps;
@@ -126,4 +134,18 @@ public class Character_Controller : MonoBehaviour
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
+
+    public void SetCheckpoint(Vector3 newCheckpoint)
+    {
+      
+         checkpointPosition = newCheckpoint;
+           
+        
+    }
+
+    public void Respawn()
+    {
+        transform.position = checkpointPosition;
+    }
+  
 }
