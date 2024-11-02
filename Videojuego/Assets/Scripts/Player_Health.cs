@@ -12,7 +12,6 @@ public class Player_Health : MonoBehaviour
     
     private Character_Controller characterController;
     private GameManager gameManager;
-    private Checkpoint checkpoint;
 
     void Start()
     {
