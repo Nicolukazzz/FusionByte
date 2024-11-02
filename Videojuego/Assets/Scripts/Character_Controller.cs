@@ -23,6 +23,9 @@ public class Character_Controller : MonoBehaviour
     private bool recibiendoDano;
 
     private Vector3 checkpointPosition;
+    [SerializeField] Transform startCheckpoint;
+    [SerializeField] Transform endCheckpoint;
+
 
 
     private Animator animator;
@@ -33,7 +36,6 @@ public class Character_Controller : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         playerHealth = GetComponent<Player_Health>();
-        checkpointPosition = transform.position;
     }
 
     void Update()
@@ -41,11 +43,6 @@ public class Character_Controller : MonoBehaviour
         Movement();
         Jump();
         ApplyGravityModifiers();
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Respawn();
-        }
     }
 
     bool InFloor()
@@ -137,14 +134,16 @@ public class Character_Controller : MonoBehaviour
 
     public void SetCheckpoint(Vector3 newCheckpoint)
     {
-      
          checkpointPosition = newCheckpoint;
-           
-        
+    }
+
+    public void setStartCheckpoint()
+    {
+        checkpointPosition = startCheckpoint.position;
     }
 
     public void Respawn()
-    {
+    { 
         transform.position = checkpointPosition;
     }
   

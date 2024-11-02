@@ -7,11 +7,26 @@ public class Player_Health : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private int maxHealth = 5;
     private bool recibiendoDano;
+    private bool isDead = false;
     public float FuerzaRebote = 10f;
+    
+    private Character_Controller characterController;
+    private Checkpoint checkpoint;
 
     void Start()
     {
         currentHealth = maxHealth;
+        characterController = GetComponent<Character_Controller>();
+    }
+
+    private void Update()
+    {
+        playerDead();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            characterController.Respawn();
+        }
     }
 
     public void takeDamage(Vector2 direccion, int damage)
@@ -28,9 +43,32 @@ public class Player_Health : MonoBehaviour
 
         recibiendoDano = false;
     }
+    public void takeDamage(int damage)
+    {
+        if (!recibiendoDano)
+        {
+            recibiendoDano = true;
+            currentHealth -= damage;
+            print("taking damage");
+        }
+
+        recibiendoDano = false;
+    }
 
     public bool getRecibiendoDano()
     {
         return recibiendoDano;
     }
+
+    public void playerDead()
+    {
+        if (currentHealth == 0)
+        {
+            characterController.setStartCheckpoint();
+            characterController.Respawn();
+            currentHealth = maxHealth;
+        }
+    }
+
+
 }
