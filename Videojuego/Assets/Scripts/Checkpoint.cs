@@ -10,7 +10,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Character_Controller player = other.GetComponent<Character_Controller>();
+            GameManager player = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             if (player != null)
             {
                 player.SetCheckpoint(transform.position);

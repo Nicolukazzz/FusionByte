@@ -11,12 +11,14 @@ public class Player_Health : MonoBehaviour
     public float FuerzaRebote = 10f;
     
     private Character_Controller characterController;
+    private GameManager gameManager;
     private Checkpoint checkpoint;
 
     void Start()
     {
         currentHealth = maxHealth;
         characterController = GetComponent<Character_Controller>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -25,7 +27,7 @@ public class Player_Health : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            characterController.Respawn();
+            gameManager.Respawn();
         }
     }
 
@@ -64,8 +66,8 @@ public class Player_Health : MonoBehaviour
     {
         if (currentHealth == 0)
         {
-            characterController.setStartCheckpoint();
-            characterController.Respawn();
+            gameManager.setStartCheckpoint();
+            gameManager.Respawn();
             currentHealth = maxHealth;
         }
     }

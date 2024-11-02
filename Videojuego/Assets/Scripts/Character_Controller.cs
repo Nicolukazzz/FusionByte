@@ -22,11 +22,6 @@ public class Character_Controller : MonoBehaviour
     private float jumpTimeCounter;
     private bool recibiendoDano;
 
-    private Vector3 checkpointPosition;
-    [SerializeField] Transform startCheckpoint;
-    [SerializeField] Transform endCheckpoint;
-
-
 
     private Animator animator;
 
@@ -130,21 +125,6 @@ public class Character_Controller : MonoBehaviour
             LookRight = !LookRight;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-    }
-
-    public void SetCheckpoint(Vector3 newCheckpoint)
-    {
-         checkpointPosition = newCheckpoint;
-    }
-
-    public void setStartCheckpoint()
-    {
-        checkpointPosition = startCheckpoint.position;
-    }
-
-    public void Respawn()
-    { 
-        transform.position = checkpointPosition;
     }
   
 }

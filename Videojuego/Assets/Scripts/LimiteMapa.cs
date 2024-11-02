@@ -10,10 +10,10 @@ public class LimiteMapa : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Character_Controller player = collision.GetComponent<Character_Controller>();
-            Player_Health health = player.GetComponent<Player_Health>();
+            GameManager gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            Player_Health health = collision.GetComponent<Player_Health>();
             health.takeDamage(damage);
-            player.Respawn();
+            gameManager.Respawn();
         }
     }
 }
