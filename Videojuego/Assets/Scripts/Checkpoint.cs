@@ -9,6 +9,7 @@ public class Checkpoint : MonoBehaviour
 {
     [SerializeField] private bool isEndCheckpoint;
     [SerializeField] private Scene_Manager sceneManager;
+    [SerializeField] private AudioClip CheckpointSound;
     //[SerializeField] private int nextLevel;
 
 
@@ -20,6 +21,7 @@ public class Checkpoint : MonoBehaviour
             if (player != null)
             {
                 player.SetCheckpoint(transform.position);
+                ControladorSonidos.Instance.EjecutarSonido(CheckpointSound);
             }
 
             if (isEndCheckpoint == true)

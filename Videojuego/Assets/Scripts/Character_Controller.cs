@@ -24,6 +24,7 @@ public class Character_Controller : MonoBehaviour
 
 
     private Animator animator;
+    [SerializeField] private AudioClip JumpSound;
 
     public void Start()
     {
@@ -67,6 +68,7 @@ public class Character_Controller : MonoBehaviour
             jumpTimeCounter = MaxHoldTime;
             RestJumps--;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, JumpForce);
+            ControladorSonidos.Instance.EjecutarSonido(JumpSound);
         }
 
         // Mant�n el salto mientras se mantenga presionada la tecla
@@ -89,6 +91,7 @@ public class Character_Controller : MonoBehaviour
         {
             isJumping = false;
         }
+       
     }
 
     void ApplyGravityModifiers()

@@ -143,3 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f3964fc2aa9174296a254b8f80dafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEndCheckpoint: 0
+  sceneManager: {fileID: 0}
+  CheckpointSound: {fileID: 8300000, guid: a90901394a45028419e27ad6934cfe3b, type: 3}
