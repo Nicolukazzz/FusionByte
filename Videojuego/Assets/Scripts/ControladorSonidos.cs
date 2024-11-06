@@ -8,6 +8,9 @@ public class ControladorSonidos : MonoBehaviour
 
     private AudioSource audioSource;
 
+    [SerializeField] AudioClip buttonClick;
+    [SerializeField] AudioClip hoverClick;
+
     private void Awake()
     {
         if(Instance == null)
