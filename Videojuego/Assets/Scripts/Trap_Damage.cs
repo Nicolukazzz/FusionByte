@@ -15,6 +15,7 @@ public class Trap_Damage : MonoBehaviour
             health = collision.gameObject.GetComponent<Player_Health>();
             Vector2 damageDirection = new Vector2(transform.position.x, 0);
             health.takeDamage(damageDirection, damage);
+            health.playerDead();
 
 
         }

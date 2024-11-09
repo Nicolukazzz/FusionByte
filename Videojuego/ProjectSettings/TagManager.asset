@@ -9,6 +9,7 @@ TagManager:
   - Trap
   - Checkpoint
   - GameManager
+  - Ground
   layers:
   - Default
   - TransparentFX

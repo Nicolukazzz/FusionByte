@@ -39,6 +39,7 @@ public class Player_Health : MonoBehaviour
             print(rebote);
             gameObject.GetComponent<Rigidbody2D>().AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
             currentHealth -= damage;
+            
             print("taking damage");
         }
 
@@ -68,6 +69,7 @@ public class Player_Health : MonoBehaviour
             gameManager.setStartCheckpoint();
             gameManager.Respawn();
             currentHealth = maxHealth;
+            
         }
     }
 
