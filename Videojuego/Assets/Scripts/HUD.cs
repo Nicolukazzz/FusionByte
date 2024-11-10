@@ -6,9 +6,9 @@ using UnityEngine;
 public class HUD : MonoBehaviour
 {
     public GameManager gameManager;
-    public TextMeshProUGUI Puntos;
-    public TextMeshProUGUI Puntos2;
-    public TextMeshProUGUI Puntos3;
+    public TextMeshProUGUI Puntos_Insignia;
+    public TextMeshProUGUI Puntos_Calavera;
+    public TextMeshProUGUI Puntos_Ojo;
 
     public GameObject[] vidas;
     public GameObject[] vidasPerdidas;
@@ -22,17 +22,22 @@ public class HUD : MonoBehaviour
         vidasPerdidas[4].SetActive(false);
     }
    
-    public void ActualizarPuntos(int puntosTotales)
+    public void ActualizarPuntos(TypeCollectable tipo)
     {
-        Puntos.text = gameManager.PuntosTotales.ToString();
-    }
-    public void ActualizarPuntos2(int puntosTotales2)
-    {
-        Puntos2.text = gameManager.PuntosTotales2.ToString();
-    }
-    public void ActualizarPuntos3(int puntosTotales3)
-    {
-        Puntos3.text = gameManager.PuntosTotales3.ToString();
+        if (tipo == TypeCollectable.INSIGNIA)
+        {
+            Puntos_Insignia.text = gameManager.PuntosTotalesInsignia.ToString();
+        }
+
+        if (tipo == TypeCollectable.CALAVERA)
+        {
+            Puntos_Calavera.text = gameManager.PuntosTotalesCalavera.ToString();
+        }
+
+        if (tipo == TypeCollectable.OJO)
+        {
+            Puntos_Ojo.text = gameManager.PuntosTotalesOjo.ToString();
+        }
     }
 
     public void DesactivarVida(int indice)

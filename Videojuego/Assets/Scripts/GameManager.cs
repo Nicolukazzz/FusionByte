@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+
     private Vector3 checkpointPosition;
     [SerializeField] private Transform startCheckpoint;
     [SerializeField] private Transform endCheckpoint;
-    public int PuntosTotales { get { return puntosTotales; } }
-    private int puntosTotales;
+    public int PuntosTotalesInsignia { get { return puntosTotalesInsignia; } }
+    private int puntosTotalesInsignia;
 
-    public int PuntosTotales2 { get { return puntosTotales2; } }
-    private int puntosTotales2;
+    public int PuntosTotalesCalavera { get { return puntosTotalesCalavera; } }
+    private int puntosTotalesCalavera;
 
-    public int PuntosTotales3 { get { return puntosTotales3; } }
-    private int puntosTotales3;
+    public int PuntosTotalesOjo { get { return puntosTotalesOjo; } }
+    private int puntosTotalesOjo;
 
     public HUD hud;
     private int VidasActuales=5;
+    private Collectable_Controller tipo;
    
     private Transform player;
+
 
     private void Awake()
     {
@@ -43,20 +47,23 @@ public class GameManager : MonoBehaviour
         hud.DesactivarVida(VidasActuales);
     }
 
-    public void SumarPuntos(int puntosASumar)
+    public void SumarPuntos(int puntosASumar, TypeCollectable typeCollectable)
     {
-        puntosTotales += puntosASumar;
-        hud.ActualizarPuntos(puntosTotales);
-    }
-    public void SumarPuntos2(int puntosASumar2)
-    {
-        puntosTotales2 += puntosASumar2;
-        hud.ActualizarPuntos2(puntosTotales2);
-    }
-    public void SumarPuntos3(int puntosASumar3)
-    {
-        puntosTotales3 += puntosASumar3;
-        hud.ActualizarPuntos3(puntosTotales3);
+        if (typeCollectable == TypeCollectable.INSIGNIA)
+        {
+            puntosTotalesInsignia += puntosASumar;
+            hud.ActualizarPuntos(typeCollectable);
+        }
+        if (typeCollectable == TypeCollectable.CALAVERA)
+        {
+            puntosTotalesCalavera += puntosASumar;
+            hud.ActualizarPuntos(typeCollectable);
+        }
+        if (typeCollectable == TypeCollectable.OJO)
+        {
+            puntosTotalesOjo += puntosASumar;
+            hud.ActualizarPuntos(typeCollectable);
+        }   
     }
 }
 
