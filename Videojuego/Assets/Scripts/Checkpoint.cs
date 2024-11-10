@@ -9,8 +9,13 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] private bool isEndCheckpoint;
     [SerializeField] private Scene_Manager sceneManager;
     [SerializeField] private AudioClip CheckpointSound;
+    private Animator animator;
     //[SerializeField] private int nextLevel;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,6 +25,7 @@ public class Checkpoint : MonoBehaviour
             if (player != null)
             {
                 player.SetCheckpoint(transform.position);
+                animator.SetBool("IsCheckpointActive", true);
                 ControladorSonidos.Instance.EjecutarSonido(CheckpointSound);
             }
 
