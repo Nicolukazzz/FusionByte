@@ -43,8 +43,6 @@ public class GameManager : MonoBehaviour
     public void Respawn()
     {
         player.transform.position = checkpointPosition;
-        VidasActuales = VidasActuales-1;
-        hud.DesactivarVida(VidasActuales);
     }
 
     public void SumarPuntos(int puntosASumar, TypeCollectable typeCollectable)

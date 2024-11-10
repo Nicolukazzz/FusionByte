@@ -45,4 +45,13 @@ public class HUD : MonoBehaviour
         vidas[indice].SetActive(false);
         vidasPerdidas[indice].SetActive(true);
     }
+
+    public void ResetVidas()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            vidas[i].SetActive(true);
+            vidasPerdidas[i].SetActive(false);
+        }
+    }
 }
