@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6851214958407235122}
   - component: {fileID: 986862774245362780}
   m_Layer: 0
-  m_Name: Coleccionable#3_0
+  m_Name: Coleccionable_INSIGNIA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
