@@ -7,14 +7,15 @@ public class Player_Health : MonoBehaviour
 {
     [SerializeField] private int currentHealth;
     [SerializeField] private int maxHealth = 5;
-    private bool recibiendoDano;
+    private bool recibiendoDano = false;
     private bool isDead = false;
-    public float FuerzaRebote = 1f;
+    public float FuerzaRebote = 10f;
     
     private Character_Controller characterController;
     private GameManager gameManager;
     private HUD hud;
     private Rigidbody2D rb;
+    private Animator animator;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class Player_Health : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -40,38 +42,38 @@ public class Player_Health : MonoBehaviour
         if (!recibiendoDano)
         {
             recibiendoDano = true;
+            animator.SetBool("RecibeDano", recibiendoDano);
             currentHealth -= damage;
 
-            characterController.rebote(direccion);
+            rb.velocity = Vector2.zero;
 
-            ////LA MALDITA MU�ECA NO REBOTA CUANDO SE CHOCA >:c
-            //Vector2 rebote = new Vector2(rb.transform.position.x - direccion.x,1f).normalized;
-            //Debug.Log("Rebote en X: " + rebote.x + ", Rebote en Y: " + rebote.y);
-            //rb.velocity = Vector2.zero;
-            //rb.AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
-            //Debug.Log("Rebote aplicado: " + rebote * FuerzaRebote);
+            Vector2 rebote = new Vector2(rb.transform.position.x - direccion.x, 1f).normalized;
+            rb.AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
 
             hud.DesactivarVida(currentHealth);
-
-            print("taking damage");
         }
+    }
 
+    public void desactivarDano()
+    {
         recibiendoDano = false;
+        animator.SetBool("RecibeDano", recibiendoDano);
     }
 
     public void takeDamage(int damage)
     {
-        if (!recibiendoDano)
+        if (recibiendoDano == false)
         {
             recibiendoDano = true;
             currentHealth -= damage;
             hud.DesactivarVida(currentHealth);
 
+            animator.SetBool("RecibeDano", recibiendoDano);
             print("taking damage");
-            
         }
 
         recibiendoDano = false;
+        animator.SetBool("RecibeDano", recibiendoDano);
     }
 
     public bool getRecibiendoDano()
@@ -81,12 +83,24 @@ public class Player_Health : MonoBehaviour
 
     public void playerDead()
     {
-        if (currentHealth == 0)
+        if (currentHealth == 0 && !isDead)
         {
-            gameManager.setStartCheckpoint();
-            gameManager.Respawn();
-            currentHealth = maxHealth;
-            hud.ResetVidas();
+            isDead = true; // Evita que se llame múltiples veces
+            characterController.enabled = false;
+            rb.velocity = Vector2.zero;
+
+            // Llama a la función `Respawn` después de 1 segundo (o la duración de la animación de recibir daño)
+            Invoke("RespawnPlayer", 1f);
         }
+    }
+
+    private void RespawnPlayer()
+    {
+        characterController.enabled = true;
+        gameManager.setStartCheckpoint();
+        gameManager.Respawn();
+        currentHealth = maxHealth;
+        hud.ResetVidas();
+        isDead = false; // Resetear el estado después de respawnear
     }
 }
