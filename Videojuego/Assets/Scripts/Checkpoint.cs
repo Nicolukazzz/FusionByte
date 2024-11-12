@@ -9,6 +9,7 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] private bool isEndCheckpoint;
     [SerializeField] private Scene_Manager sceneManager;
     [SerializeField] private AudioClip CheckpointSound;
+    private Puntaje puntaje;
     private Animator animator;
     //[SerializeField] private int nextLevel;
 
