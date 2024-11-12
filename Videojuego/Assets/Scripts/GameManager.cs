@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     private Vector3 checkpointPosition;
     [SerializeField] private Transform startCheckpoint;
     [SerializeField] private Transform endCheckpoint;
+
+    public int puntajeFinal;
     public int PuntosTotalesInsignia { get { return puntosTotalesInsignia; } }
     private int puntosTotalesInsignia;
 
@@ -19,8 +21,10 @@ public class GameManager : MonoBehaviour
     private int puntosTotalesOjo;
 
     public HUD hud;
+    public Puntaje hudPuntaje;
     private int VidasActuales=5;
     private Collectable_Controller tipo;
+    private Checkpoint Checkpoint;
    
     private Transform player;
 
@@ -62,6 +66,12 @@ public class GameManager : MonoBehaviour
             puntosTotalesOjo += puntosASumar;
             hud.ActualizarPuntos(typeCollectable);
         }   
+    }
+    public void PuntajeFinal()
+    {
+        puntajeFinal = puntosTotalesCalavera + puntosTotalesInsignia + puntosTotalesOjo;
+        hudPuntaje.EstrellasPantalla(puntajeFinal);
+        
     }
 }
 

@@ -22,6 +22,7 @@ public class Character_Controller : MonoBehaviour
     private float jumpTimeCounter;
     private bool recibiendoDano;
 
+    public float FuerzaRebote = 1f;
 
     private Animator animator;
     [SerializeField] private AudioClip JumpSound;
@@ -118,6 +119,15 @@ public class Character_Controller : MonoBehaviour
         Orientation(inputMovement);
         //animator.SetBool("RecibeDano", playerHealth.getRecibiendoDano());
 
+    }
+
+    public void rebote(Vector2 direccion)
+    {
+        Vector2 rebote = new Vector2(rigidbody.transform.position.x - direccion.x, 1f).normalized;
+        Debug.Log("Rebote en X: " + rebote.x + ", Rebote en Y: " + rebote.y);
+        rigidbody.velocity = Vector2.zero;
+        rigidbody.AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
+        Debug.Log("Rebote aplicado: " + rebote * FuerzaRebote);
     }
 
     void Orientation(float inputMovement)

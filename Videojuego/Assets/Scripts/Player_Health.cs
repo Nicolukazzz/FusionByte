@@ -9,7 +9,7 @@ public class Player_Health : MonoBehaviour
     [SerializeField] private int maxHealth = 5;
     private bool recibiendoDano;
     private bool isDead = false;
-    public float FuerzaRebote = 10000f;
+    public float FuerzaRebote = 1f;
     
     private Character_Controller characterController;
     private GameManager gameManager;
@@ -42,11 +42,14 @@ public class Player_Health : MonoBehaviour
             recibiendoDano = true;
             currentHealth -= damage;
 
-            //LA MALDITA MUÑECA NO REBOTA CUANDO SE CHOCA >:c
-            Vector2 rebote = new Vector2(rb.transform.position.x - direccion.x, 0f).normalized;
-            Debug.Log("Rebote en X: " + rebote.x + ", Rebote en Y: " + rebote.y);
-            rb.AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
-            Debug.Log("Rebote aplicado: " + rebote * FuerzaRebote);
+            characterController.rebote(direccion);
+
+            ////LA MALDITA MUÑECA NO REBOTA CUANDO SE CHOCA >:c
+            //Vector2 rebote = new Vector2(rb.transform.position.x - direccion.x,1f).normalized;
+            //Debug.Log("Rebote en X: " + rebote.x + ", Rebote en Y: " + rebote.y);
+            //rb.velocity = Vector2.zero;
+            //rb.AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
+            //Debug.Log("Rebote aplicado: " + rebote * FuerzaRebote);
 
             hud.DesactivarVida(currentHealth);
 

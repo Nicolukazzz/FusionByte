@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Puntaje : MonoBehaviour
 {
+    public GameManager gameManager;
     public GameObject[] Estrellas;
     // Start is called before the first frame update
     void Start()
@@ -13,9 +14,24 @@ public class Puntaje : MonoBehaviour
         Estrellas[2].SetActive(false);
     }
 
-    public void EstrellasPantalla()
+    public void EstrellasPantalla(int cantidad)
     {
-        Debug.Log("Funciona");
+        if (cantidad == 0)
+        {
+            Estrellas[0].SetActive(true);
+        }
+        if (cantidad >=1&&cantidad<=2)
+        {
+            Estrellas[1].SetActive(true);
+        }
+        if (cantidad >= 3 && cantidad <= 4)
+        {
+            Estrellas[2].SetActive(true);
+        }
+        if (cantidad > 5)
+        {
+            Estrellas[3].SetActive(true);
+        }
     }
 
     
