@@ -16,7 +16,7 @@ public class Trap_Damage : MonoBehaviour
 
             Vector2 damageDirection = transform.position;
             health.takeDamage(damageDirection, damage);
-            health.playerDead();
+            //health.playerDead();
         }
     }
 }

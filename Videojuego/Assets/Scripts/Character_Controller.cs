@@ -36,9 +36,12 @@ public class Character_Controller : MonoBehaviour
 
     void Update()
     {
-        Movement();
-        Jump();
-        ApplyGravityModifiers();
+        if (playerHealth.getRecibiendoDano() == false)
+        {
+            Movement();
+            Jump();
+            ApplyGravityModifiers();
+        }
     }
 
     bool InFloor()
@@ -110,14 +113,14 @@ public class Character_Controller : MonoBehaviour
 
     void Movement()
     {
+        
         // Movimiento del personaje
         float inputMovement = Input.GetAxis("Horizontal");
-        animator.SetFloat("Horizontal",Mathf.Abs(inputMovement));
+        animator.SetFloat("Horizontal", Mathf.Abs(inputMovement));
         animator.SetFloat("VelocidadY", rigidbody.velocity.y);
         rigidbody.velocity = new Vector2(inputMovement * Speed, rigidbody.velocity.y);
         Orientation(inputMovement);
         //animator.SetBool("RecibeDano", playerHealth.getRecibiendoDano());
-
     }
 
     void Orientation(float inputMovement)
