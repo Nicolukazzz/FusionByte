@@ -11,6 +11,7 @@ public class Collectable_Controller : MonoBehaviour
 {
 
     public int valor = 1;
+    
     public GameManager gameManager;
     [SerializeField] TypeCollectable tipo;
 
@@ -18,22 +19,25 @@ public class Collectable_Controller : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-
             if (tipo == TypeCollectable.OJO)
             {
                 gameManager.SumarPuntos(valor, TypeCollectable.OJO);
+                
             }
             if (tipo == TypeCollectable.INSIGNIA)
             {
                 gameManager.SumarPuntos(valor, TypeCollectable.INSIGNIA);
+                
             }
             if (tipo == TypeCollectable.CALAVERA)
             {
                 gameManager.SumarPuntos(valor, TypeCollectable.CALAVERA);
+                
             }
             print("correcto");
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             Destroy(this.gameObject);
         }
+       
     }
 }

@@ -85,11 +85,11 @@ public class Player_Health : MonoBehaviour
     {
         if (currentHealth == 0 && !isDead)
         {
-            isDead = true; // Evita que se llame múltiples veces
+            isDead = true; // Evita que se llame mÃºltiples veces
             characterController.enabled = false;
             rb.velocity = Vector2.zero;
 
-            // Llama a la función `Respawn` después de 1 segundo (o la duración de la animación de recibir daño)
+            // Llama a la funciÃ³n `Respawn` despuÃ©s de 1 segundo (o la duraciÃ³n de la animaciÃ³n de recibir daÃ±o)
             Invoke("RespawnPlayer", 1f);
         }
     }
@@ -101,6 +101,6 @@ public class Player_Health : MonoBehaviour
         gameManager.Respawn();
         currentHealth = maxHealth;
         hud.ResetVidas();
-        isDead = false; // Resetear el estado después de respawnear
+        isDead = false; // Resetear el estado despuÃ©s de respawnear
     }
 }
