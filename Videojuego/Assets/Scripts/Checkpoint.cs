@@ -7,33 +7,39 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] private bool isEndCheckpoint;
     [SerializeField] private Scene_Manager sceneManager;
     [SerializeField] private AudioClip CheckpointSound;
-    [SerializeField] private GameManager gameManager;
     [SerializeField] private float tiempoEspera; // Tiempo de espera para mostrar el puntaje
 
     [SerializeField] private CanvasGroup panelTransicion; // Panel para las transiciones de fade in y fade out
     [SerializeField] private float duracionTransicion; // Duración de cada transición
 
     private Animator animator;
+    private Character_Controller characterController;
+    private Rigidbody2D characterRB;
+    private GameManager gameManager;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            GameManager player = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-            if (player != null)
+            characterController = other.GetComponent<Character_Controller>();
+            characterRB = other.GetComponent<Rigidbody2D>();
+            if (gameManager != null)
             {
-                player.SetCheckpoint(transform.position);
+                gameManager.SetCheckpoint(transform.position);
                 animator.SetBool("IsCheckpointActive", true);
                 ControladorSonidos.Instance.EjecutarSonido(CheckpointSound);
             }
 
             if (isEndCheckpoint)
             {
+                characterRB.velocity = Vector2.zero;
+                characterController.enabled = false;
                 StartCoroutine(TransicionFinal());
             }
         }
