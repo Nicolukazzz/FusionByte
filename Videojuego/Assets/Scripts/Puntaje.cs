@@ -12,6 +12,7 @@ public class Puntaje : MonoBehaviour
         Estrellas[0].SetActive(false);
         Estrellas[1].SetActive(false);
         Estrellas[2].SetActive(false);
+        Estrellas[3].SetActive(false);
     }
 
     public void EstrellasPantalla(int cantidad)
