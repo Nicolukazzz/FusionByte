@@ -310,7 +310,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 5
-  FuerzaRebote: 10
+  damageSound: {fileID: 8300000, guid: 71b80963263c12f4f86e70b76e1110f0, type: 3}
+  FuerzaRebote: 12
 --- !u!114 &1475350158504098506
 MonoBehaviour:
   m_ObjectHideFlags: 0
