@@ -10,7 +10,7 @@ public class Player_Health : MonoBehaviour
     private bool recibiendoDano = false;
     private bool isDead = false;
     public float FuerzaRebote = 10f;
-    
+
     private Character_Controller characterController;
     private GameManager gameManager;
     private HUD hud;
@@ -27,6 +27,25 @@ public class Player_Health : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    public void setIsDead(bool isDead)
+    {
+        this.isDead = isDead;
+
+    }
+
+
+    public void setCurrenHealth(int health)
+    {
+        currentHealth = health;
+
+    }
+
+    public int getMaxHealth()
+    {
+        return maxHealth;
+    }
+
+
     private void Update()
     {
         playerDead();
@@ -42,6 +61,7 @@ public class Player_Health : MonoBehaviour
         if (!recibiendoDano)
         {
             recibiendoDano = true;
+            characterController.enabled = false;
             animator.SetBool("RecibeDano", recibiendoDano);
             currentHealth -= damage;
 
@@ -51,6 +71,7 @@ public class Player_Health : MonoBehaviour
             rb.AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
 
             hud.DesactivarVida(currentHealth);
+
         }
     }
 
@@ -58,8 +79,9 @@ public class Player_Health : MonoBehaviour
     {
         recibiendoDano = false;
         animator.SetBool("RecibeDano", recibiendoDano);
+        characterController.enabled = true;
     }
-
+ 
     public void takeDamage(int damage)
     {
         if (recibiendoDano == false)
@@ -90,17 +112,12 @@ public class Player_Health : MonoBehaviour
             rb.velocity = Vector2.zero;
 
             // Llama a la función `Respawn` después de 1 segundo (o la duración de la animación de recibir daño)
-            Invoke("RespawnPlayer", 1f);
+            Invoke("RespawnFromGameManager", 1f);
         }
     }
-
-    public void RespawnPlayer()
+    private void RespawnFromGameManager()
     {
-        characterController.enabled = true;
-        gameManager.setStartCheckpoint();
-        gameManager.Respawn();
-        currentHealth = maxHealth;
-        hud.ResetVidas();
-        isDead = false; // Resetear el estado después de respawnear
+        gameManager.RespawnPlayer();
     }
 }
+

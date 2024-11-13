@@ -39,8 +39,9 @@ public class Character_Controller : MonoBehaviour
         {
             Movement();
             Jump();
-            ApplyGravityModifiers();
+       
         }
+        ApplyGravityModifiers();
     }
 
     bool InFloor()
@@ -131,5 +132,7 @@ public class Character_Controller : MonoBehaviour
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
-  
+   
+
 }
+
