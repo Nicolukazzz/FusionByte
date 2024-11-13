@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7561647978383697324}
   - component: {fileID: 1696701445338876417}
+  - component: {fileID: 2539676986132524715}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -46,4 +47,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startCheckpoint: {fileID: 0}
   endCheckpoint: {fileID: 0}
+  puntajeFinal: 0
   hud: {fileID: 0}
+  hudPuntaje: {fileID: 0}
+--- !u!114 &2539676986132524715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4316983570201115618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1793fc20d99ad2d42a21577985b49e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canva: {fileID: 0}
+  manager: {fileID: 0}
+  Player_Health_Class: {fileID: 0}

@@ -94,7 +94,7 @@ public class Player_Health : MonoBehaviour
         }
     }
 
-    private void RespawnPlayer()
+    public void RespawnPlayer()
     {
         characterController.enabled = true;
         gameManager.setStartCheckpoint();
