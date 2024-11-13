@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,8 +8,11 @@ public class GameManager : MonoBehaviour
 
 
     private Vector3 checkpointPosition;
+    [SerializeField] private Character_Controller characterController;
     [SerializeField] private Transform startCheckpoint;
     [SerializeField] private Transform endCheckpoint;
+    [SerializeField] private Player_Health playerHealthClass;
+    [SerializeField] CinemachineVirtualCamera camera_follow;
 
     public int puntajeFinal;
     public int PuntosTotalesInsignia { get { return puntosTotalesInsignia; } }
@@ -47,6 +51,7 @@ public class GameManager : MonoBehaviour
     public void Respawn()
     {
         player.transform.position = checkpointPosition;
+        camera_follow.Follow = player;
     }
 
     public void SumarPuntos(int puntosASumar, TypeCollectable typeCollectable)
@@ -73,5 +78,17 @@ public class GameManager : MonoBehaviour
         hudPuntaje.EstrellasPantalla(puntajeFinal);
         
     }
+
+    public void RespawnPlayer()
+    {
+        characterController.enabled = true;
+        setStartCheckpoint();
+        Respawn();
+        playerHealthClass.setCurrenHealth(playerHealthClass.getMaxHealth());
+        hud.ResetVidas();
+        playerHealthClass.setIsDead(false);// Resetear el estado después de respawnear
+    }
+
+
 }
 
