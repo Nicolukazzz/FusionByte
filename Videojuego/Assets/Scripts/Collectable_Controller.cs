@@ -12,8 +12,13 @@ public class Collectable_Controller : MonoBehaviour
 
     public int valor = 1;
     
-    public GameManager gameManager;
+    private GameManager gameManager;
     [SerializeField] TypeCollectable tipo;
+
+    private void Awake()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -10,7 +10,7 @@ public class Menu_Pausa : MonoBehaviour
 
     private bool pausado = false;
     [SerializeField] private GameObject canva;
-    [SerializeField] private Scene_Manager manager;
+    [SerializeField] private Scene_Manager sceneManager;
     private GameManager gamemanager;
     void Start()
     {
@@ -70,7 +70,7 @@ public class Menu_Pausa : MonoBehaviour
     {
         canva.SetActive(false);
         Time.timeScale = 1f;
-        manager.GameStart();
+        sceneManager.GameStart();
     }
 
 
