@@ -23,8 +23,6 @@ public class Character_Controller : MonoBehaviour
 
     private Animator animator;
     [SerializeField] private AudioClip JumpSound;
-    [SerializeField] private GameObject magicAttackPrefab;
-    [SerializeField] private Transform magicAttackSpawnPoint;
   
 
     public void Start()
@@ -41,16 +39,6 @@ public class Character_Controller : MonoBehaviour
         {
             Movement();
             Jump();
-
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                animator.SetTrigger("Magia");
-                LaunchMagicAttack();
-                
-            }
-          
-
-
         }
         ApplyGravityModifiers();
     }
@@ -145,15 +133,6 @@ public class Character_Controller : MonoBehaviour
         }
      
 
-    }
-    public void LaunchMagicAttack()
-    {
-        // Determinar la dirección en la que el personaje está mirando
-        int direction = transform.localScale.x > 0 ? 1 : -1;
-
-        // Instanciar el proyectil y pasarle la dirección
-        GameObject magicAttack = Instantiate(magicAttackPrefab, magicAttackSpawnPoint.position, Quaternion.identity);
-        magicAttack.GetComponent<MagicAttack>().SetDirection(direction);
     }
 }
 

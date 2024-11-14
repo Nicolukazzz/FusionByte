@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3418421618403454782}
   - component: {fileID: -3295037075892953999}
   m_Layer: 0
-  m_Name: T.Nataque-Sheet_0
+  m_Name: PROYECTIL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
