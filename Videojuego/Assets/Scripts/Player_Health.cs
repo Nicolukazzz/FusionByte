@@ -7,6 +7,7 @@ public class Player_Health : MonoBehaviour
 {
     [SerializeField] private int currentHealth;
     [SerializeField] private int maxHealth = 5;
+    [SerializeField] private AudioClip damageSound;
     private bool recibiendoDano = false;
     private bool isDead = false;
     public float FuerzaRebote = 10f;
@@ -61,8 +62,10 @@ public class Player_Health : MonoBehaviour
         if (!recibiendoDano)
         {
             recibiendoDano = true;
+            ControladorSonidos.Instance.EjecutarSonido(damageSound);
             characterController.enabled = false;
             animator.SetBool("RecibeDano", recibiendoDano);
+            
             currentHealth -= damage;
 
             rb.velocity = Vector2.zero;
@@ -87,6 +90,7 @@ public class Player_Health : MonoBehaviour
         if (recibiendoDano == false)
         {
             recibiendoDano = true;
+            ControladorSonidos.Instance.EjecutarSonido(damageSound);
             currentHealth -= damage;
             hud.DesactivarVida(currentHealth);
 

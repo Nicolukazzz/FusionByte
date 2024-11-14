@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Puntaje : MonoBehaviour
 {
-    public GameManager gameManager;
     public GameObject[] Estrellas;
     // Start is called before the first frame update
     void Start()
