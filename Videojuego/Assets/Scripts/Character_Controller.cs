@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Character_Controller : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class Character_Controller : MonoBehaviour
     private bool LookRight = true;
     private int RestJumps=0;
     private Rigidbody2D rigidbody;
-    private BoxCollider2D boxCollider;
+    private CapsuleCollider2D capsuleCollider;
     private Player_Health playerHealth;
     private bool isJumping;
     private float jumpTimeCounter;
@@ -28,7 +29,7 @@ public class Character_Controller : MonoBehaviour
     public void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
         playerHealth = GetComponent<Player_Health>();
     }
@@ -37,15 +38,23 @@ public class Character_Controller : MonoBehaviour
     {
         if (playerHealth.getRecibiendoDano() == false)
         {
-            Movement();
             Jump();
         }
         ApplyGravityModifiers();
     }
 
+    private void FixedUpdate()
+    {
+        if (playerHealth.getRecibiendoDano() == false)
+        {
+            Movement();
+        }
+    }
+
     bool InFloor()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y), 0f, Vector2.down, 0.2f, capaFloor);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(capsuleCollider.bounds.center, new Vector2(capsuleCollider.bounds.size.x - 0.1f , capsuleCollider.bounds.size.y), 0f, Vector2.down, 1f, capaFloor);
+        Debug.DrawRay(capsuleCollider.bounds.center, Vector2.down * 1f, Color.red);
         return raycastHit.collider != null;
     }
 
@@ -56,7 +65,7 @@ public class Character_Controller : MonoBehaviour
         {
             RestJumps = MaxJumps;
             animator.SetBool("InFloor",true);
-          
+        
         }
         if (!InFloor())
         {
@@ -93,7 +102,7 @@ public class Character_Controller : MonoBehaviour
         {
             isJumping = false;
         }
-       
+     
     }
 
     void ApplyGravityModifiers()
@@ -129,10 +138,8 @@ public class Character_Controller : MonoBehaviour
         {
             LookRight = !LookRight;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-           
-        }
-     
 
+        }
     }
 }
 
