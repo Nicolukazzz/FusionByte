@@ -8,11 +8,15 @@ public class GameManager : MonoBehaviour
 
 
     private Vector3 checkpointPosition;
-    [SerializeField] private Character_Controller characterController;
+    
     [SerializeField] private Transform startCheckpoint;
     [SerializeField] private Transform endCheckpoint;
-    [SerializeField] private Player_Health playerHealthClass;
     [SerializeField] CinemachineVirtualCamera camera_follow;
+
+    [SerializeField] GameObject character;
+    private Character_Controller characterController;
+    private Player_Health playerHealthClass;
+    private Transform playerPosition;
 
     public int puntajeFinal;
     public int PuntosTotalesInsignia { get { return puntosTotalesInsignia; } }
@@ -26,16 +30,16 @@ public class GameManager : MonoBehaviour
 
     public HUD hud;
     public Puntaje hudPuntaje;
-    private int VidasActuales=5;
+    private int VidasActuales = 5;
     private Collectable_Controller tipo;
     private Checkpoint Checkpoint;
-   
-    private Transform player;
 
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerPosition = character.GetComponent<Transform>();
+        characterController = character.GetComponent<Character_Controller>();
+        playerHealthClass = character.GetComponent<Player_Health>();
     }
 
     public void SetCheckpoint(Vector3 newCheckpoint)
@@ -50,8 +54,8 @@ public class GameManager : MonoBehaviour
 
     public void Respawn()
     {
-        player.transform.position = checkpointPosition;
-        camera_follow.Follow = player;
+        playerPosition.transform.position = checkpointPosition;
+        camera_follow.Follow = playerPosition;
     }
 
     public void SumarPuntos(int puntosASumar, TypeCollectable typeCollectable)
