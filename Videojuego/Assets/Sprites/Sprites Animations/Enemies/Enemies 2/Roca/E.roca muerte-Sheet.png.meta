@@ -113,11 +113,11 @@ TextureImporter:
       name: E.roca muerte-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 80
-        height: 144
-      alignment: 0
+        x: 44
+        y: 25
+        width: 16
+        height: 35
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -134,11 +134,11 @@ TextureImporter:
       name: E.roca muerte-Sheet_1
       rect:
         serializedVersion: 2
-        x: 80
-        y: 0
-        width: 80
-        height: 144
-      alignment: 0
+        x: 123
+        y: 25
+        width: 18
+        height: 33
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -155,11 +155,11 @@ TextureImporter:
       name: E.roca muerte-Sheet_2
       rect:
         serializedVersion: 2
-        x: 160
-        y: 0
-        width: 80
-        height: 144
-      alignment: 0
+        x: 199
+        y: 28
+        width: 21
+        height: 21
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -176,11 +176,11 @@ TextureImporter:
       name: E.roca muerte-Sheet_3
       rect:
         serializedVersion: 2
-        x: 240
-        y: 0
-        width: 80
-        height: 144
-      alignment: 0
+        x: 275
+        y: 24
+        width: 28
+        height: 19
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -197,11 +197,11 @@ TextureImporter:
       name: E.roca muerte-Sheet_4
       rect:
         serializedVersion: 2
-        x: 320
-        y: 0
-        width: 80
-        height: 144
-      alignment: 0
+        x: 355
+        y: 25
+        width: 28
+        height: 10
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -218,11 +218,11 @@ TextureImporter:
       name: E.roca muerte-Sheet_5
       rect:
         serializedVersion: 2
-        x: 400
-        y: 0
-        width: 80
-        height: 144
-      alignment: 0
+        x: 443
+        y: 25
+        width: 9
+        height: 10
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
