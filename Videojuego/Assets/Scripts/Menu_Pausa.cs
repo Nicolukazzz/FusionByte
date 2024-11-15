@@ -72,8 +72,5 @@ public class Menu_Pausa : MonoBehaviour
         Time.timeScale = 1f;
         sceneManager.GameStart();
     }
-
-
-
 }
 
