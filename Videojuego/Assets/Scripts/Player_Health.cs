@@ -113,7 +113,7 @@ public class Player_Health : MonoBehaviour
         {
             isDead = true; // Evita que se llame múltiples veces
             characterController.enabled = false;
-            
+            rb.velocity = Vector2.zero;
 
             // Llama a la función `Respawn` después de 1 segundo (o la duración de la animación de recibir daño)
             Invoke("RespawnFromGameManager", 1f);

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6433507969748002714}
   - component: {fileID: 336336551583755499}
   - component: {fileID: 5816425200052006877}
-  - component: {fileID: 2352099466149577516}
   - component: {fileID: 7982359194139508460}
   m_Layer: 0
   m_Name: Enemigo MOCO
@@ -178,19 +177,6 @@ MonoBehaviour:
   speed: 10
   detectionRadius: 10
   enemyType: 1
---- !u!114 &2352099466149577516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085918921609929443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfae8c274682b88439fdb11e22875215, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
 --- !u!95 &7982359194139508460
 Animator:
   serializedVersion: 5
