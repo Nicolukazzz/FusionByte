@@ -310,6 +310,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: InFloor
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: RecibeDano
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7537796032580700556}
   m_Solo: 0
@@ -540,7 +543,7 @@ AnimatorStateMachine:
     m_Position: {x: 520, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -9211161857421485811}
-    m_Position: {x: 280, y: 80, z: 0}
+    m_Position: {x: 260, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4990150391863281431}
     m_Position: {x: -110, y: 240, z: 0}
