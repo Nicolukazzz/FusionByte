@@ -63,7 +63,6 @@ public class Player_Health : MonoBehaviour
         {
             StartCoroutine(perderControl(direccion, damage));
             
-
         }
     }
 
@@ -85,18 +84,23 @@ public class Player_Health : MonoBehaviour
         hud.DesactivarVida(currentHealth);
         yield return new WaitForSeconds(0.6f);
         recibiendoDano = false;
+
+        if(currentHealth > 0)
+        {
+            characterController.enabled = true;
+        }
         
         characterController.enabled = true;
         animator.SetBool("RecibeDano", recibiendoDano);
     }
 
- 
     public void takeDamage(int damage)
     {
         if (recibiendoDano == false)
         {
             recibiendoDano = true;
             ControladorSonidos.Instance.EjecutarSonido(damageSound);
+
             currentHealth -= damage;
             hud.DesactivarVida(currentHealth);
 
@@ -115,19 +119,21 @@ public class Player_Health : MonoBehaviour
 
     public void playerDead()
     {
-        if (currentHealth == 0 && !isDead)
+        if (currentHealth <= 0 && !isDead)
         {
             isDead = true; // Evita que se llame múltiples veces
             characterController.enabled = false;
-            rb.velocity = Vector2.zero;
+            
 
             // Llama a la función `Respawn` después de 1 segundo (o la duración de la animación de recibir daño)
-            Invoke("RespawnFromGameManager", 1f);
+            Invoke("RespawnFromGameManager", 0.6f);
         }
     }
     private void RespawnFromGameManager()
     {
         gameManager.RespawnPlayer();
     }
+
+
 }
 
