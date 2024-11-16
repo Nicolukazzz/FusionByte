@@ -22,6 +22,7 @@ public class Character_Controller : MonoBehaviour
     private float jumpTimeCounter;
     private bool recibiendoDano;
 
+
     private Animator animator;
     [SerializeField] private AudioClip JumpSound;
   

@@ -61,29 +61,35 @@ public class Player_Health : MonoBehaviour
     {
         if (!recibiendoDano)
         {
-            recibiendoDano = true;
-            ControladorSonidos.Instance.EjecutarSonido(damageSound);
-            characterController.enabled = false;
-            animator.SetBool("RecibeDano", recibiendoDano);
+            StartCoroutine(perderControl(direccion, damage));
             
-            currentHealth -= damage;
-
-            rb.velocity = Vector2.zero;
-
-            Vector2 rebote = new Vector2(rb.transform.position.x - direccion.x, 1f).normalized;
-            rb.AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
-
-            hud.DesactivarVida(currentHealth);
 
         }
     }
 
-    public void desactivarDano()
+    private IEnumerator perderControl(Vector2 direccion, int damage)
     {
-        recibiendoDano = false;
+        recibiendoDano = true;    
+
+        ControladorSonidos.Instance.EjecutarSonido(damageSound);
+        characterController.enabled = false;
+        rb.velocity = Vector2.zero;
         animator.SetBool("RecibeDano", recibiendoDano);
+
+        currentHealth -= damage;
+
+        
+        Vector2 rebote = new Vector2(rb.transform.position.x - direccion.x, 1f).normalized;
+        rb.AddForce(rebote * FuerzaRebote, ForceMode2D.Impulse);
+
+        hud.DesactivarVida(currentHealth);
+        yield return new WaitForSeconds(0.6f);
+        recibiendoDano = false;
+        
         characterController.enabled = true;
+        animator.SetBool("RecibeDano", recibiendoDano);
     }
+
  
     public void takeDamage(int damage)
     {
