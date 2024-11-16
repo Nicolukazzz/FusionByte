@@ -166,4 +166,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   valor: 1
-  gameManager: {fileID: 0}
+  tipo: 0
+  getDamageSound: {fileID: 8300000, guid: ed83cd644d2ca3440ba8cfa241864846, type: 3}

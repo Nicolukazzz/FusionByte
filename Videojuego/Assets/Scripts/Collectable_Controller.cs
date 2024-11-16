@@ -14,6 +14,7 @@ public class Collectable_Controller : MonoBehaviour
     
     private GameManager gameManager;
     [SerializeField] TypeCollectable tipo;
+    [SerializeField] AudioClip getDamageSound;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class Collectable_Controller : MonoBehaviour
             }
             print("correcto");
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            ControladorSonidos.Instance.EjecutarSonido(getDamageSound);
             Destroy(this.gameObject);
         }
        
