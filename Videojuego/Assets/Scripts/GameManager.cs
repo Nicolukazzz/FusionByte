@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     private Character_Controller characterController;
     private Player_Health playerHealthClass;
     private Transform playerPosition;
-
+    private Rigidbody2D playerRB;
     public int puntajeFinal;
     public int PuntosTotalesInsignia { get { return puntosTotalesInsignia; } }
     private int puntosTotalesInsignia;
@@ -33,13 +33,14 @@ public class GameManager : MonoBehaviour
     private int VidasActuales = 5;
     private Collectable_Controller tipo;
     private Checkpoint Checkpoint;
-
+    private bool isInvincible = false;
 
     private void Awake()
     {
         playerPosition = character.GetComponent<Transform>();
         characterController = character.GetComponent<Character_Controller>();
         playerHealthClass = character.GetComponent<Player_Health>();
+        playerRB = character.GetComponent<Rigidbody2D>();
     }
 
     public void SetCheckpoint(Vector3 newCheckpoint)
@@ -54,8 +55,11 @@ public class GameManager : MonoBehaviour
 
     public void Respawn()
     {
+
+        playerRB.velocity = Vector2.zero;
         playerPosition.transform.position = checkpointPosition;
         camera_follow.Follow = playerPosition;
+        
     }
 
     public void SumarPuntos(int puntosASumar, TypeCollectable typeCollectable)
@@ -90,7 +94,7 @@ public class GameManager : MonoBehaviour
         Respawn();
         playerHealthClass.setCurrenHealth(playerHealthClass.getMaxHealth());
         hud.ResetVidas();
-        playerHealthClass.setIsDead(false);// Resetear el estado después de respawnear
+        playerHealthClass.setIsDead(false);
     }
 
 
