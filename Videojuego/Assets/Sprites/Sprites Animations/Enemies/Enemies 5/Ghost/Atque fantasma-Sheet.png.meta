@@ -113,12 +113,12 @@ TextureImporter:
       name: Atque fantasma-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 300
-        height: 300
+        x: 109
+        y: 63
+        width: 135
+        height: 161
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -131,36 +131,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atque fantasma-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 0
-        width: 300
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 61a4eadaeba12aa4693c69ec3c717f0c
-      internalID: 1914111229
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Atque fantasma-Sheet_2
       rect:
         serializedVersion: 2
-        x: 600
-        y: 0
-        width: 300
-        height: 300
+        x: 417
+        y: 63
+        width: 122
+        height: 167
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,12 +155,12 @@ TextureImporter:
       name: Atque fantasma-Sheet_3
       rect:
         serializedVersion: 2
-        x: 900
-        y: 0
-        width: 300
-        height: 300
+        x: 712
+        y: 63
+        width: 127
+        height: 177
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,12 +176,12 @@ TextureImporter:
       name: Atque fantasma-Sheet_4
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 0
-        width: 300
-        height: 300
+        x: 962
+        y: 63
+        width: 177
+        height: 161
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,12 +197,12 @@ TextureImporter:
       name: Atque fantasma-Sheet_5
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 0
-        width: 300
-        height: 300
+        x: 1262
+        y: 63
+        width: 177
+        height: 161
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,6 +210,27 @@ TextureImporter:
       bones: []
       spriteID: 8d5440f604386b540a4f35c5458031ac
       internalID: -1101585972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atque fantasma-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1564
+        y: 63
+        width: 175
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d27862bfecf1b4e4baa0a6b2a9cd3efe
+      internalID: -421518294
       vertices: []
       indices: 
       edges: []
@@ -252,6 +252,7 @@ TextureImporter:
       Atque fantasma-Sheet_3: -1999723100
       Atque fantasma-Sheet_4: 461628177
       Atque fantasma-Sheet_5: -1101585972
+      Atque fantasma-Sheet_6: -421518294
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
