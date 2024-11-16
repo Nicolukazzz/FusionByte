@@ -20,13 +20,15 @@ public class Enemycontroller : MonoBehaviour
     [SerializeField] private float speed = 2.0f;
     [SerializeField] private float detectionRadius = 1.0f;
     [SerializeField] private EnemyType enemyType;
-    
+
+
     private Rigidbody2D rb;
     private Vector2 movement;
     float distanceToPlayer;
     bool lookLeft = true;
     private bool isDead = false;
     private bool recibiendoDano;
+   
 
 
 
@@ -121,5 +123,8 @@ public class Enemycontroller : MonoBehaviour
     {
         return isDead;
     }
+
+
+
 }
 

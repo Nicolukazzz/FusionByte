@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private Character_Controller characterController;
     private Player_Health playerHealthClass;
     private Transform playerPosition;
+    private Rigidbody2D playerRB;
 
     public int puntajeFinal;
     public int PuntosTotalesInsignia { get { return puntosTotalesInsignia; } }
@@ -40,7 +41,8 @@ public class GameManager : MonoBehaviour
         playerPosition = character.GetComponent<Transform>();
         characterController = character.GetComponent<Character_Controller>();
         playerHealthClass = character.GetComponent<Player_Health>();
-    }
+        playerRB = character.GetComponent<Rigidbody2D>();
+}
 
     public void SetCheckpoint(Vector3 newCheckpoint)
     {
@@ -85,12 +87,14 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        playerRB.velocity = Vector2.zero;
         characterController.enabled = true;
         setStartCheckpoint();
         Respawn();
         playerHealthClass.setCurrenHealth(playerHealthClass.getMaxHealth());
         hud.ResetVidas();
         playerHealthClass.setIsDead(false);// Resetear el estado después de respawnear
+        
     }
 
 
