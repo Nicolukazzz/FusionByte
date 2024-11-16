@@ -25,6 +25,7 @@ public class Enemy_Damage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            animator.SetTrigger("dealDamage");
             health = collision.gameObject.GetComponent<Player_Health>();
 
             //Vector2 damageDirection = transform.position;
